@@ -25,6 +25,7 @@
 #include "classes/heartbeat.h"
 #include "usb_streaming.h"
 #include "glitchkit.h"
+#include "rhododendron.h"
 
 #include <rom_iap.h>
 #include "usb_descriptor.h"
@@ -38,7 +39,8 @@
 #include <drivers/platform_clock.h>
 #include <drivers/memory/allocator.h>
 
-
+// XXX:
+int rhododendron_early_init(void);
 
 void emergency_mode(void);
 
@@ -76,6 +78,8 @@ int main(void)
 	if (platform_get_parent_clock_source(CLOCK_SOURCE_PLL0_USB) == CLOCK_SOURCE_INTERNAL_OSCILLATOR) {
 		emergency_mode();
 	}
+
+	rhododendron_early_init();
 
 	// Run all of our tasks (methods defined with DEFINE_TASK), and never return.
 	scheduler_run();

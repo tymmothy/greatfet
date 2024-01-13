@@ -18,8 +18,7 @@
 // If you have a v0.2 Rhododendron (or earlier) and haven't made the bodges I have
 // (looking at you, @tannewt), you'll probably want to undefine these -- I've bodged in
 // some automated test connections, and will probably add them to the design in r0.3. ~KT
-//#define RHODODENDRON_SUPPORTS_VOLTAGE_SANITY_CHECKING
-//#define RHODODENDRON_SUPPORTS_CLOCK_SANITY_CHECKING
+#define RHODODENDRON_SUPPORTS_VOLTAGE_SANITY_CHECKING
 
 // If this Rhododendron has the its ULPI CLKOUT tied to 3v3, we can provide it with a 60MHz
 // reference clock of our own. Undefine the line below to switch the clock frequency to
@@ -131,6 +130,18 @@ void rhododendron_toggle_led(rhododendron_led_t led);
 
 
 /**
+ * Sets the state of the provided Rhododendron LED.
+ */
+void rhododendron_set_led_state(rhododendron_led_t led, bool on);
+
+
+/**
+ * Returns true iff our Rhododendron board detects a connected VBUS supply on its target port.
+ */
+bool rhododendron_vbus_detected(void);
+
+
+/**
  * Starts a Rhododendron capture of high-speed USB data.
  */
 int rhododendron_start_capture(void);
@@ -146,6 +157,21 @@ void rhododendron_stop_capture(void);
  * Rhododenron background "thread".
  */
 void service_rhododendron(void);
+
+
+
+/**
+ * Starts the core Rhododendron packetization engine, which populates the packetization_end_of_packets
+ * array using our State Configurable Timer to detect packet edges.
+ */
+void rhododendron_start_packetization(void);
+
+
+/**
+ * Halts the core Rhododendron packetization engine.
+ */
+void rhododendron_stop_packetization(void);
+
 
 
 #endif

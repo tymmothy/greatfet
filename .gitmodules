@@ -3,4 +3,4 @@
 	url = https://github.com/mossmann/libopencm3
 [submodule "libgreat"]
 	path = libgreat
-	url = https://github.com/greatscottgadgets/libgreat
+	url = https://github.com/tymmothy/libgreat
