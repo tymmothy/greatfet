@@ -40,12 +40,12 @@ void init_usb0(void) {
 	usb_queue_init(&usb0_endpoint_control_in_queue);
 	usb_queue_init(&usb0_endpoint_bulk_out_queue);
 	usb_queue_init(&usb0_endpoint_bulk_in_queue);
+	usb_queue_init(&usb0_endpoint_delineation_queue);
 
 	usb_endpoint_init(&usb0_endpoint_control_out);
 	usb_endpoint_init(&usb0_endpoint_control_in);
 
 	usb_endpoint_init(&usb0_endpoint_bulk_in);
-	usb_queue_init(&usb0_endpoint_delineation_queue);
 
 	nvic_set_priority(NVIC_USB0_IRQ, 254);
 
